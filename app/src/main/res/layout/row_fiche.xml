@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/moisAnnee"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="mois"
+
+                android:layout_margin="5dp" />
+
+            <TextView
+                android:id="@+id/montantValide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                tools:text="montant"
+                android:layout_alignTop="@+id/moisAnnee"
+                android:layout_toEndOf="@+id/moisAnnee"
+                android:layout_margin="5dp"
+                android:layout_column="1" />
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                tools:text="montant"
+                android:layout_alignTop="@+id/moisAnnee"
+                android:layout_toEndOf="@+id/moisAnnee"
+                android:layout_margin="5dp"
+                android:layout_column="1"
+                android:text="id"
+                android:visibility="invisible" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/libelleEtat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                tools:text="libelleEtat"
+                android:layout_margin="5dp"
+                android:layout_column="0" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</RelativeLayout>
