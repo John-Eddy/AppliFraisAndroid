@@ -26,6 +26,7 @@ import java.util.List;
 import Classes.FicheFrais;
 import Classes.FicheFraisAdapter;
 import Classes.Visiteur;
+import Classes.WebService;
 
 /**
  * Created by Utilisateur on 02/05/2016.
@@ -36,6 +37,8 @@ public class AcceuilFicheFraisActivity extends Activity {
     private ProgressDialog pDialog;
 
     private Visiteur visiteur ;
+
+    private ArrayList<FicheFrais> lesFicheFrais = new ArrayList<FicheFrais>();
 
 
     private static String TAG = AcceuilFicheFraisActivity.class.getSimpleName();
@@ -63,11 +66,11 @@ public class AcceuilFicheFraisActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
+
                 Intent AfficherFicheActivity = new Intent(AcceuilFicheFraisActivity.this, AfficherFicheFraisActivity.class);
                 // objet qui vas nous permettre de passe des variables ici la variable passInfo
                 AfficherFicheActivity.putExtra("visiteur", visiteur);
-                AfficherFicheActivity.putExtra("idFiche", id);
-                Log.d("Visiteur",visiteur.toJSon());
+                AfficherFicheActivity.putExtra("idFiche", lesFicheFrais.get(position).getId());
                 // on appelle notre activité
                 startActivity(AfficherFicheActivity);
             }
@@ -78,7 +81,7 @@ public class AcceuilFicheFraisActivity extends Activity {
 
         showpDialog();
 
-        String urlJsonFiche = "http://192.168.56.1:81/projetcastor/web/api/lesfichesfrais/";
+        String urlJsonFiche = new WebService().getUrl()+"/projetcastor/web/api/lesfichesfrais/";
         urlJsonFiche += this.visiteur.toJSon();
 
         Log.e("url:",urlJsonFiche+visiteur.describeContents());
@@ -100,15 +103,10 @@ public class AcceuilFicheFraisActivity extends Activity {
 
                                 FicheFrais uneFicheFrais = new FicheFrais(person);
 
-                                visiteur.ajouterFiche(uneFicheFrais);
-
-                                jsonResponse += "Mois: " + uneFicheFrais.getMoisAnnee() + "\n\n";
-                                jsonResponse += "Montant valide: " + Double.toString(uneFicheFrais.getMontantValide()) + "\n\n";
-                                jsonResponse += "Etat: " + uneFicheFrais.getEtat().getLibelle() + "\n\n";
-                                Log.e("Fiche:",jsonResponse);
+                                lesFicheFrais.add(uneFicheFrais);
 
                             }
-                            afficherListeFiches(visiteur.getLesFicheFrais());
+                            afficherListeFiches(lesFicheFrais);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

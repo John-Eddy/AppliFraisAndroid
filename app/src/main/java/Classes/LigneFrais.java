@@ -9,9 +9,8 @@ public abstract class LigneFrais {
 
     protected int id;
     protected Double montant;
-    protected Etat etat;
+    protected String etat;
     protected MaDate date;
-
 
 
     public int getId() {
@@ -30,11 +29,11 @@ public abstract class LigneFrais {
         this.montant = montant;
     }
 
-    public Etat getEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(Etat etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 

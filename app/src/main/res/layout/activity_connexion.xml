@@ -10,9 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.36"
+        android:layout_weight="0.08"
         android:weightSum="1">
 
+        <ImageView
+            android:src="@drawable/logo_gsb"
+            android:layout_width="269dp"
+            android:layout_height="150dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:layout_weight="0.14"
+            android:layout_margin="30dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -28,12 +36,14 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Nom d&apos;utilisateur"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/textViewUsername" />
+            android:id="@+id/textViewUsername"
+            android:textColorLink="@android:color/holo_blue_dark" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editTextUsername" />
+            android:id="@+id/editTextUsername"
+            android:textColorLink="@android:color/holo_blue_dark" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,14 +51,16 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Mot de passe"
             android:id="@+id/textViewPassword"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textColorLink="@android:color/holo_blue_dark" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editTextPassword" />
+            android:id="@+id/editTextPassword"
+            android:textColorLink="@android:color/holo_blue_dark" />
 
         <Button
             android:layout_width="373dp"
@@ -56,7 +68,8 @@
             android:text="Connexion"
             android:id="@+id/boutonConnexion"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.21" />
+            android:layout_weight="0.21"
+            android:textColorLink="@android:color/holo_blue_dark" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +78,7 @@
             android:text="Identifiants inccorectes"
             android:id="@+id/textViewErreur"
             android:layout_gravity="center_horizontal"
-            android:textColor="#fb0000"
+            android:textColor="@android:color/holo_blue_dark"
             android:visibility="invisible" />
 
     </LinearLayout>

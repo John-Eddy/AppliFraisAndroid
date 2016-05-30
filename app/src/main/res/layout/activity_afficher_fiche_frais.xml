@@ -9,32 +9,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.pierrot.ApplicationFrais.app.AfficherFicheFraisActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
 
-        <TableLayout
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="101dp"
-            android:id="@+id/tableLayout"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true">
+            android:layout_height="match_parent">
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Fiche frais"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textViewTitre"
+                android:layout_column="0" />
+        </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Fiche frais"
-                    android:id="@+id/textViewTitre"
-                    android:layout_column="0" />
-            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -43,29 +45,35 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Mois :"
-                    android:id="@+id/textViewLabelMois"
-                    android:layout_column="0" />
+                    android:id="@+id/textViewLabelMoisAnnee"
+                    android:layout_column="0"
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/textViewMois"
+                    android:id="@+id/textViewMoisAnnee"
                     android:layout_column="1"
-                    android:text="moi" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:text="mois"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Etat :"
-                    android:id="@+id/textViewLabelDateMo"
-                    android:layout_column="0" />
+                    android:id="@+id/textViewLabelEtat"
+                    android:layout_column="0"
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textColor="@android:color/black"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -73,47 +81,121 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:id="@+id/textViewEtat"
                     android:layout_column="1"
-                    android:text="etat" />
-            </TableRow>
+                    android:text="etat"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
-            <TableRow
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Date modification :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewLabelDateModif"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:text="00/00/0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewDateModif"
+                android:layout_margin="5dp"
+                />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Montant validé:"
+                android:id="@+id/textViewLabelMontantValider"
+                android:layout_column="0"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewMontantValider"
+                android:layout_column="1"
+                android:text="0 €"
+                android:layout_margin="5dp"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tableLayout">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Lignes frais forfaits :"
+                android:id="@+id/textViewFraisForfait"
+                android:layout_column="0"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/black"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Montant validé:"
-                    android:id="@+id/textViewMontantValider"
-                    android:layout_column="0" />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:id="@+id/listViewFraisForfait" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/textViewMontantValider"
-                    android:layout_column="1"
-                    android:text="45" />
-            </TableRow>
+        </LinearLayout>
 
-        </TableLayout>
-
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Ligne frais hors forfait :"
-            android:id="@+id/textView3"
-            android:layout_column="0" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Ligne frais forfait :"
-            android:id="@+id/textView4"
-            android:layout_column="0" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Lignes frais hors forfaits :"
+                android:id="@+id/textViewFraisHorsForfait"
+                android:layout_column="0"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textColor="@android:color/black"/>
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:id="@+id/listViewFraisHorsForfait" />
+        </LinearLayout>
 
     </LinearLayout>
 

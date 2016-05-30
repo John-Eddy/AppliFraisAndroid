@@ -19,10 +19,10 @@ import java.util.ListIterator;
 /**
  * Created by Utilisateur on 02/05/2016.
  */
-public class FicheFrais implements Parcelable{
+public class FicheFrais {
 
     private int id;
-    private Etat etat;
+    private String etat;
     private double montantValide;
     private String mois;
     private String annee;
@@ -34,7 +34,7 @@ public class FicheFrais implements Parcelable{
     public FicheFrais() {
     }
 
-    public FicheFrais(int id, Etat etat, double montantValide, String mois, String annee,MaDate dateModif, List<LigneFraisForfait> lesLignesFraisForfait,
+    public FicheFrais(int id, String etat, double montantValide, String mois, String annee,MaDate dateModif, List<LigneFraisForfait> lesLignesFraisForfait,
                       List<LigneFraisHorsForfait> lesLigneFraisHorsForfait) {
         this.id = id;
         this.etat = etat;
@@ -49,8 +49,7 @@ public class FicheFrais implements Parcelable{
     public FicheFrais(JSONObject response){
         try {
             this.id = response.getInt("id");
-            this.etat= new Etat ();
-            this.etat.setEtatLigneFrais(response.getJSONObject("idetatfichefrais"));
+            this.etat = response.getJSONObject("idetatfichefrais").getString("libelle");
             this.montantValide = response.getDouble("montantvalide");
             this.mois = response.getString("mois");
             this.annee = response.getString("annee");
@@ -73,60 +72,13 @@ public class FicheFrais implements Parcelable{
             Log.e("Error: ", e.getMessage());
         }
     }
-    @Override
-    public int describeContents()
-    {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.getId());
-        dest.writeParcelable(this.getEtat(),flags);
-        dest.writeDouble(this.getMontantValide());
-        dest.writeString(this.getMois());
-        dest.writeString(this.getAnnee());
-        dest.writeParcelable(this.getDateModif(),flags);
-        dest.writeTypedList(this.getLesLignesFraisForfait());
-        dest.writeTypedList(this.getLesLigneFraisHorsForfait());
-    }
-
-    public static final Parcelable.Creator<FicheFrais> CREATOR = new Parcelable.Creator<FicheFrais>()
-    {
-        @Override
-        public FicheFrais createFromParcel(Parcel source)
-        {
-            return new FicheFrais(source);
-        }
-
-        @Override
-        public FicheFrais[] newArray(int size)
-        {
-            return new FicheFrais[size];
-        }
-    };
-
-    public FicheFrais(Parcel in) {
-        this.id = in.readInt();
-        this.etat = in.readParcelable(Etat.class.getClassLoader());
-        this.montantValide = in.readDouble();
-        this.mois = in.readString();
-        this.annee= in.readString();
-        this.dateModif = in.readParcelable(MaDate.class.getClassLoader());
-        this.lesLignesFraisForfait = new ArrayList<>();
-                in.readTypedList(lesLignesFraisForfait,LigneFraisForfaitList.CREATOR);
-
-        this.lesLigneFraisHorsForfait= new ArrayList<>();
-                in.readTypedList( lesLigneFraisHorsForfait,LigneFraisHorsForfaitList.CREATOR);
 
 
-    }
-
-    public Etat getEtat() {
+    public String getEtat() {
         return etat;
     }
 
-    public void setEtat(Etat etat) {
+    public void setEtat(String etat) {
         this.etat = etat;
     }
 

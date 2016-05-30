@@ -21,6 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import Classes.Visiteur;
+import Classes.WebService;
 
 /**
  * Created by Utilisateur on 27/04/2016.
@@ -69,9 +70,10 @@ public class ConnexionActivity extends Activity {
     private void makeJsonVisiteurRequest(final Visiteur visiteur) {
 
         showpDialog();
-        // json object response url
-        String urlJsonVisiteur = "http://192.168.56.1:81/projetcastor/web/api/connexion/";
+        //Création de la requete qui va être envoyer
+        String urlJsonVisiteur = new WebService().getUrl()+"/projetcastor/web/api/connexion/";
 
+        //ajout des informations du visiteur requete qui va être envoyer
         String JSoNVisiteur = visiteur.toJSon();
 
         urlJsonVisiteur += JSoNVisiteur;
@@ -91,15 +93,10 @@ public class ConnexionActivity extends Activity {
                         Visiteur visiteurConnecter = new Visiteur(response);
                         visiteurConnecter.setPassword(visiteur.getPassword());
 
-                        String jsonResponse = "";
-                        jsonResponse += "username: " + visiteurConnecter.getUsername() + "\n\n";
-                        jsonResponse += "nom: " + visiteurConnecter.getNom() + "\n\n";
-                        jsonResponse += "prenom: " + visiteurConnecter.getPrenom() + "\n\n";
-
-                        Log.e("Visiteur ", jsonResponse);
-
                         hidepDialog();
 
+
+                        //Demarage activité acceuil fiche frais
 
                         Intent acceuilActivite = new Intent(ConnexionActivity.this, AcceuilFicheFraisActivity.class);
                         // objet qui vas nous permettre de passe des variables ici la variable passInfo

@@ -22,7 +22,6 @@ public class Visiteur implements Parcelable {
     private String password;
     private String token;
 
-    private List<FicheFrais> lesFicheFrais;
 
     public Visiteur(String nom, String prenom, String username, String password, String token, List<FicheFrais> lesFicheFrais) {
         this.nom = nom;
@@ -30,7 +29,6 @@ public class Visiteur implements Parcelable {
         this.username = username;
         this.password = password;
         this.token = token;
-        this.lesFicheFrais = lesFicheFrais;
     }
 
     public Visiteur(String username, String password) {
@@ -45,7 +43,6 @@ public class Visiteur implements Parcelable {
             this.username = response.getString("username");
             this.password =null;
             this.token = null;
-            this.lesFicheFrais=new ArrayList<FicheFrais>();
 
 
         } catch (JSONException e) {
@@ -67,7 +64,6 @@ public class Visiteur implements Parcelable {
         dest.writeString(this.getUsername());
         dest.writeString(this.getPassword());
         dest.writeString(this.token);
-        dest.writeTypedList(this.getLesFicheFrais());
 
     }
 
@@ -92,8 +88,6 @@ public class Visiteur implements Parcelable {
         this.username = in.readString();
         this.password = in.readString();
         this.token = in.readString();
-        this.lesFicheFrais = new ArrayList<>();
-            in.readTypedList(lesFicheFrais,FicheFraisList.CREATOR);
     }
 
     public String getNom() {
@@ -135,6 +129,14 @@ public class Visiteur implements Parcelable {
 
         return visiteurJSon;
     }
+    public String toJSon(int idFicheFrais) {
+
+        String visiteurJSon = "{\"username\":\""+this.username+"\",";
+        visiteurJSon += "\"password\":\""+this.password+"\",";
+        visiteurJSon += "\"idfichefrais\":\""+idFicheFrais+"\"}";
+
+        return visiteurJSon;
+    }
 
     public void fromJson(JSONObject response) {
         try {
@@ -150,13 +152,8 @@ public class Visiteur implements Parcelable {
         }
     }
 
-    public List<FicheFrais> getLesFicheFrais() {
-        return lesFicheFrais;
-    }
 
-    public void setLesFicheFrais(List<FicheFrais> lesFicheFrais) {
-        this.lesFicheFrais = lesFicheFrais;
-    }
+
 
     public String getToken() {
         return token;
@@ -166,8 +163,5 @@ public class Visiteur implements Parcelable {
         this.token = token;
     }
 
-    public void ajouterFiche(FicheFrais uneFicheFrais) {
-        this.lesFicheFrais.add(uneFicheFrais);
-    }
 }
 

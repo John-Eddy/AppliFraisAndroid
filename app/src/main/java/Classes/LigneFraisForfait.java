@@ -11,12 +11,12 @@ import org.json.JSONObject;
 /**
  * Created by Utilisateur on 02/05/2016.
  */
-public class LigneFraisForfait extends LigneFrais implements Parcelable{
+public class LigneFraisForfait extends LigneFrais{
 
     private int quantite;
     private String typeFrais;
 
-    public LigneFraisForfait(int id, Double montant, Etat etat, MaDate date,int quantite, String typeFrais) {
+    public LigneFraisForfait(int id, Double montant, String etat, MaDate date,int quantite, String typeFrais) {
         this.id = id;
         this.montant = montant;
         this.etat = etat;
@@ -29,8 +29,7 @@ public class LigneFraisForfait extends LigneFrais implements Parcelable{
     public LigneFraisForfait(JSONObject response){
         try {
             this.id = response.getInt("id");
-            this.etat= new Etat ();
-            this.etat.setEtatLigneFrais(response.getJSONObject("idetatlignefrais"));
+            this.etat = response.getJSONObject("idetatlignefrais").getString("libelleetatlignefrais");
             this.montant= response.getDouble("montant");
             this.date = new MaDate(response.getString("date"));
             this.quantite = response.getInt("quantite");
@@ -44,43 +43,7 @@ public class LigneFraisForfait extends LigneFrais implements Parcelable{
         }
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.getId());
-        dest.writeDouble(this.getMontant());
-        dest.writeParcelable(this.getEtat(), flags);
-        dest.writeParcelable(this.getDate(),flags);
-        dest.writeInt(this.getquantite());
-        dest.writeString(this.getTypeFrais());
-
-    }
-
-    public static final Parcelable.Creator<LigneFraisForfait> CREATOR = new Parcelable.Creator<LigneFraisForfait>() {
-        @Override
-        public LigneFraisForfait createFromParcel(Parcel in) {
-            return new LigneFraisForfait(in);
-        }
-
-        @Override
-        public LigneFraisForfait[] newArray(int size) {
-            return new LigneFraisForfait[size];
-        }
-    };
-
-    protected LigneFraisForfait(Parcel in) {
-        this.id = in.readInt();
-        this.montant = in.readDouble();
-        this.etat = in.readParcelable(Etat.class.getClassLoader());
-        this.date = in.readParcelable(MaDate.class.getClassLoader());
-        this.quantite  = in.readInt();
-        this.typeFrais= in.readString();
-
-    }
 
     public int getquantite() {
         return quantite;

@@ -11,7 +11,7 @@
 
     <TextView android:text="Hello World!" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/textViewDateModif" />
 
     <Button
         android:layout_width="wrap_content"
@@ -19,6 +19,6 @@
         android:text="@string/button"
         android:id="@+id/button"
         android:layout_marginTop="71dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textViewDateModif"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

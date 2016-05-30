@@ -2,6 +2,7 @@ package Classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -23,9 +24,9 @@ public class MaDate implements Parcelable {
     }
 
     public MaDate(String response){
-        this.annee = response.substring(0,3);
-        this.mois = response.substring(5,6);
-        this.jour = response.substring(8,9);
+        this.annee = response.substring(0,4);
+        this.mois = response.substring(5,7);
+        this.jour = response.substring(8,10);
     }
 
     @Override
@@ -79,5 +80,10 @@ public class MaDate implements Parcelable {
 
     public void setAnnee(String annee) {
         this.annee = annee;
+    }
+
+    public String toString(){
+        Log.e("date",this.jour+"/"+this.mois+"/"+this.annee);
+        return this.jour+"/"+this.mois+"/"+this.annee;
     }
 }

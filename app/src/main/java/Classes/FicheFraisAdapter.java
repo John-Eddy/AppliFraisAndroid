@@ -39,7 +39,7 @@ public class FicheFraisAdapter extends ArrayAdapter<FicheFrais> {
         String montantValide="Montant validé : "+Double.toString(ficheFrais.getMontantValide());
         viewHolder.moisAnne.setText(moisAnnee);
         viewHolder.montantValider.setText(montantValide);
-        viewHolder.libelleEtat.setText(ficheFrais.getEtat().getLibelle());
+        viewHolder.libelleEtat.setText(ficheFrais.getEtat());
 
         viewHolder.id.setText(Integer.toString(ficheFrais.getId()));
 
