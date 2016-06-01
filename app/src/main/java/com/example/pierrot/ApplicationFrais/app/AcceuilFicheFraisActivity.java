@@ -81,7 +81,7 @@ public class AcceuilFicheFraisActivity extends Activity {
 
         showpDialog();
 
-        String urlJsonFiche = new WebService().getUrl()+"/projetcastor/web/api/lesfichesfrais/";
+        String urlJsonFiche = new WebService().getUrl()+"/api/lesfichesfrais/";
         urlJsonFiche += this.visiteur.toJSon();
 
         Log.e("url:",urlJsonFiche+visiteur.describeContents());
@@ -94,8 +94,6 @@ public class AcceuilFicheFraisActivity extends Activity {
                         try {
                             // Parsing json array response
                             // loop through each json object
-                            String jsonResponse = "";
-
 
                             for (int i = 0; i < response.length(); i++) {
 

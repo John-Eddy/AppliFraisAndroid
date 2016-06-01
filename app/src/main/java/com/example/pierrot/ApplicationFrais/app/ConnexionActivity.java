@@ -71,7 +71,7 @@ public class ConnexionActivity extends Activity {
 
         showpDialog();
         //Création de la requete qui va être envoyer
-        String urlJsonVisiteur = new WebService().getUrl()+"/projetcastor/web/api/connexion/";
+        String urlJsonVisiteur = new WebService().getUrl()+"/api/connexion/";
 
         //ajout des informations du visiteur requete qui va être envoyer
         String JSoNVisiteur = visiteur.toJSon();

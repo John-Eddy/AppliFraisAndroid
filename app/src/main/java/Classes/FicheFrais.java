@@ -140,6 +140,7 @@ public class FicheFrais {
     }
 
     public String getMoisAnnee() {
+
         return this.mois+"/"+this.annee;
     }
 }

@@ -26,6 +26,8 @@ import Classes.FicheFrais;
 import Classes.FicheFraisAdapter;
 import Classes.LigneFraisForfait;
 import Classes.LigneFraisForfaitAdapter;
+import Classes.LigneFraisHorsForfait;
+import Classes.LigneFraisHorsForfaitAdapter;
 import Classes.Visiteur;
 import Classes.WebService;
 
@@ -38,7 +40,7 @@ public class AfficherFicheFraisActivity extends AppCompatActivity {
     private TextView textViewMontant ;
     private TextView textViewDateModif;
     private ListView listViewFraisForfait;
-    private ListView getListViewFraisHotsForfait;
+    private ListView listViewFraisHorsForfait;
 
     private Visiteur visiteur ;
 
@@ -68,7 +70,7 @@ public class AfficherFicheFraisActivity extends AppCompatActivity {
         textViewMontant = (TextView) findViewById(R.id.textViewMontantValider);
         textViewDateModif = (TextView) findViewById(R.id.textViewDateModif);
         listViewFraisForfait = (ListView) findViewById(R.id.listViewFraisForfait);
-        getListViewFraisHotsForfait = (ListView) findViewById(R.id.listViewFraisHorsForfait);
+        listViewFraisHorsForfait = (ListView) findViewById(R.id.listViewFraisHorsForfait);
 
     }
 
@@ -78,7 +80,7 @@ public class AfficherFicheFraisActivity extends AppCompatActivity {
 
         showpDialog();
         //Création de la requete qui va être envoyer
-        String urlJsonVisiteur = new WebService().getUrl()+"/projetcastor/web/api/fichefrais/";
+        String urlJsonVisiteur = new WebService().getUrl()+"/api/fichefrais/";
 
         //ajout des informations du visiteur requete qui va être envoyer
         String JSoNVisiteur = visiteur.toJSon(idFiche);
@@ -143,13 +145,15 @@ public class AfficherFicheFraisActivity extends AppCompatActivity {
         textViewMontant.setText(Double.toString(uneFicheFrais.getMontantValide())+" €");
         textViewDateModif.setText(uneFicheFrais.getDateModif().toString());
 
-        afficherListeLigneFraisForfait(uneFicheFrais.getLesLignesFraisForfait());
+        afficherListeLigneFraisForfait(uneFicheFrais.getLesLignesFraisForfait(), uneFicheFrais.getLesLigneFraisHorsForfait());
     }
 
-    private void afficherListeLigneFraisForfait(List<LigneFraisForfait> lesLignesFraisForfait){
+    private void afficherListeLigneFraisForfait(List<LigneFraisForfait> lesLignesFraisForfait, List<LigneFraisHorsForfait>  lesLignesFraisHorsForfait ){
 
         LigneFraisForfaitAdapter adapter = new LigneFraisForfaitAdapter(AfficherFicheFraisActivity.this, lesLignesFraisForfait);
         listViewFraisForfait.setAdapter(adapter);
+        LigneFraisHorsForfaitAdapter adapterHf = new LigneFraisHorsForfaitAdapter(AfficherFicheFraisActivity.this, lesLignesFraisHorsForfait);
+        listViewFraisHorsForfait.setAdapter(adapterHf);
     }
     private void showpDialog() {
         if (!pDialog.isShowing())
